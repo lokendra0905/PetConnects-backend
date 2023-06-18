@@ -18,7 +18,7 @@ app.use("/users", userRouter);
 app.use("/pets", PetRouter);
 app.use("/favourites", FavouiteRouter);
 
-app.listen(process.env.PORT, async (req, res) => {
+app.listen(process.env.PORT, async () => {
   try {
     await connection;
     console.log("Connected to Database Successfully");
