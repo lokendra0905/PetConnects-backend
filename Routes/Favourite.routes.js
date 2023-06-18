@@ -15,16 +15,16 @@ FavouiteRouter.get("/", async (req, res) => {
 FavouiteRouter.post("/addFavourite", async (req, res) => {
   try {
     const Favourite = new FavouriteModel(req.body);
-    await pet.save();
-    res.status(200).send({ msg: "New Pet has been Added to favourite" });
+    await Favourite.save();
+    res.status(200).send({ message: "Added to favourite" });
   } catch (error) {
     res.status(400).send({ err: error.message });
   }
 });
 
-FavouiteRouter.post("/delete", async (req, res) => {
+FavouiteRouter.post("/delete/:petId", async (req, res) => {
+  const { petId } = req.params;
   try {
-    const Favourite = new req.body();
     await PetModel.findByIdAndDelete({ _id: petId });
     res.status(200).send({ msg: `The Pet has been deleted.` });
   } catch (error) {
