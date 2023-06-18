@@ -105,6 +105,17 @@ PetRouter.get("/", async (req, res) => {
   }
 });
 
+PetRouter.get("/:petId", async (req, res) => {
+  const { petId } = req.params;
+  try {
+    const pet = await PetModel.find({ _id: petId });
+
+    res.status(200).send(pet);
+  } catch (error) {
+    res.status(400).send({ err: error.message });
+  }
+});
+
 PetRouter.use(auth);
 
 PetRouter.post("/addPet", auth, async (req, res) => {
